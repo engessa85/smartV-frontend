@@ -29,7 +29,7 @@ function Header({ isActive, setSearch }: PropeType) {
     };
 
     fetchUserInfo();
-  }, []);
+  }, [route]);
 
   const handleSingout = () => {
     logoutService();

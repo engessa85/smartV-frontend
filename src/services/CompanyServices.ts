@@ -38,7 +38,7 @@ export interface CompanyFormData {
 
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-export const AddCompany = async (companyData: CompanyFormData, token: string|any) => {
+export const AddCompany = async (companyData: CompanyFormData, token: string) => {
   try {
     const response = await axios.post(
       `${baseUrl}/company/companies/`,
@@ -63,7 +63,7 @@ export const AddCompany = async (companyData: CompanyFormData, token: string|any
 };
 
 
-export const getCompanies = async (token: string|any) => {
+export const getCompanies = async (token: string) => {
   try {
     const response = await axios.get(
       `${baseUrl}/company/companies/`,
