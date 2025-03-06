@@ -4,13 +4,13 @@ import { useState } from "react";
 import { loginService } from "@/services/AuthUser";
 import { BeatLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
-
+import Image from "next/image";
 
 export default function Page() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter()
+  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -24,23 +24,21 @@ export default function Page() {
 
     try {
       const res = await loginService(username, password);
-      if(res){
-        toast.success("Login Successful!", { autoClose: 2000 });
+      if (res) {
+        toast.success("Login Successful!", { autoClose: 500 });
         localStorage.setItem("accessToken", res.access);
         localStorage.setItem("refreshToken", res.refresh);
-        if(res.user.is_superuser){
-          setTimeout(()=>router.push('/admin/home'), 2000)
-        }else {
-          setTimeout(()=>router.push('/employee/home'), 2000)
+        if (res.user.is_superuser) {
+          setTimeout(() => router.push("/admin/home"), 500);
+        } else {
+          setTimeout(() => router.push("/employee/home"), 500);
         }
-      }else{
+      } else {
         toast.error("Invalid Credentials");
       }
-      
     } catch (error) {
       toast.error("Error during login ....");
       console.log(error);
-      
     } finally {
       setLoading(false);
     }
@@ -51,13 +49,18 @@ export default function Page() {
       <ToastContainer />
       <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4">
         <div className="max-w-md w-full">
-          <a href="">
-            <img
-              src="/logo.png"
-              alt="logo"
-              className="w-40 mb-8 mx-auto block"
-            />
-          </a>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom:"10px"
+            }}
+          >
+            <a href="">
+              <Image src="/logo.png" alt="logo" width={150} height={150} />
+            </a>
+          </div>
 
           <div className="p-8 rounded-2xl bg-white shadow">
             <h2 className="text-black text-center text-2xl font-bold">
@@ -161,17 +164,16 @@ export default function Page() {
                   Sign in
                 </button>
               </div>
-              <p className="text-gray-600 text-sm !mt-8 text-center">
-                Don't have an account?{" "}
-                <a
-                  href="javascript:void(0);"
-                  className="text-slate-500 hover:underline ml-1 whitespace-nowrap font-semibold"
-                >
-                  Register here
-                </a>
-              </p>
-            
-              {loading && <BeatLoader className="text-center" loading={loading} size={10} color="#D80000 " />}
+              
+
+              {loading && (
+                <BeatLoader
+                  className="text-center"
+                  loading={loading}
+                  size={10}
+                  color="#D80000 "
+                />
+              )}
             </form>
           </div>
         </div>

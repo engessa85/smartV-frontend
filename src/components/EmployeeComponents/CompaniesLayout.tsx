@@ -27,7 +27,7 @@ function CompaniesLayout({ search }: { search: string }) {
             toastId: "fetchWrong",
           });
         }
-      } catch (error) {
+      } catch {
         toast.error("Error in fetching the companies !!!", {
           toastId: "fetchWrong",
         });

@@ -81,7 +81,7 @@ function AddCompanyLayout({ setIsActive }: { setIsActive: React.Dispatch<React.S
       } else {
         toast.error("Company is not added ...");
       }
-    } catch (error) {
+    } catch {
       toast.error("Error! Company is existed", {autoClose:2000});
     } finally {
       setLoading(false);
