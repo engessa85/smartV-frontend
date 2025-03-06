@@ -97,9 +97,6 @@ function AddCompanyLayout({ setIsActive }: { setIsActive: React.Dispatch<React.S
           <hr className="mt-3" />
         </div>
 
-
-
-
         <div className="grid sm:grid-cols-2 gap-6">
           <div>
             <label className="text-gray-600 text-sm mb-2 block">
@@ -124,7 +121,7 @@ function AddCompanyLayout({ setIsActive }: { setIsActive: React.Dispatch<React.S
               placeholder="Enter company Website"
               value={company_website}
               onChange={(e) => setCompanyWebsite(e.target.value)}
-              required
+              
             />
           </div>
           <div>
@@ -137,7 +134,7 @@ function AddCompanyLayout({ setIsActive }: { setIsActive: React.Dispatch<React.S
               placeholder="Enter Company Email"
               value={company_email}
               onChange={(e) => setCompanyEmail(e.target.value)}
-              required
+              
             />
           </div>
 
@@ -151,7 +148,7 @@ function AddCompanyLayout({ setIsActive }: { setIsActive: React.Dispatch<React.S
               placeholder="Enter Company Email"
               value={company_linkedin}
               onChange={(e) => setCompanyLinkedIn(e.target.value)}
-              required
+              
             />
           </div>
 
@@ -165,7 +162,7 @@ function AddCompanyLayout({ setIsActive }: { setIsActive: React.Dispatch<React.S
               placeholder="Enter Company Email"
               value={company_facebook}
               onChange={(e) => setCompanyFaceBook(e.target.value)}
-              required
+              
             />
           </div>
 
@@ -179,7 +176,7 @@ function AddCompanyLayout({ setIsActive }: { setIsActive: React.Dispatch<React.S
               placeholder="Enter Company Email"
               value={company_twitter}
               onChange={(e) => setCompanyTwitter(e.target.value)}
-              required
+              
             />
           </div>
           
@@ -214,7 +211,7 @@ function AddCompanyLayout({ setIsActive }: { setIsActive: React.Dispatch<React.S
               placeholder="Contact Person LinkedIn"
               value={person_linked}
               onChange={(e) => setPersonLinkedIn(e.target.value)}
-              required
+              
             />
           </div>
           <div>
@@ -227,7 +224,7 @@ function AddCompanyLayout({ setIsActive }: { setIsActive: React.Dispatch<React.S
               placeholder="Contact Person Email"
               value={person_email}
               onChange={(e) => setPersonEmail(e.target.value)}
-              required
+              
             />
           </div>
           <div>
