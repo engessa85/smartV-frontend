@@ -6,7 +6,7 @@ import { BeatLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
 
 
-export default function Home() {
+export default function Page() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
