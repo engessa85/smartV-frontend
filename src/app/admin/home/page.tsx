@@ -7,7 +7,7 @@ import CompaniesLayout from "@/components/AdminComponents/CompaniesLayout";
 import HomeLayout from "@/components/AdminComponents/HomeLayout";
 import AddCompanyLayout from "@/components/AdminComponents/AddCompanyLayout";
 
-function page() {
+function Page() {
   const [isActive, setIsActive] = useState<string>("home")
   const [search, setSearch] = useState<string>("")
   const route = useRouter()
@@ -35,4 +35,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

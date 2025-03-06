@@ -7,7 +7,7 @@ import CompaniesLayout from "@/components/EmployeeComponents/CompaniesLayout";
 import HomeLayout from "@/components/EmployeeComponents/HomeLayout";
 import AddCompanyLayout from "@/components/EmployeeComponents/AddCompanyLayout";
 
-function page() {
+function Page() {
   const [isActive, setIsActive] = useState<string>("home")
   const [search, setSearch] = useState<string>("")
   const route = useRouter()
@@ -36,4 +36,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
