@@ -39,6 +39,8 @@ export default function Home() {
       
     } catch (error) {
       toast.error("Error during login ....");
+      console.log(error);
+      
     } finally {
       setLoading(false);
     }

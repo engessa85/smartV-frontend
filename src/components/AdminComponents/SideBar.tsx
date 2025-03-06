@@ -4,6 +4,7 @@ import SideBarItem from "./SideBarItem";
 import { FaHome } from "react-icons/fa";
 import { FaNetworkWired } from "react-icons/fa6";
 import { IoGitNetwork } from "react-icons/io5";
+import Image from "next/image";
 
 
 interface PropeType {
@@ -21,7 +22,7 @@ function SideBar(props:PropeType) {
       >
         <div className="pt-8 pb-2 px-6 sticky top-0 bg-white min-h-[80px] z-[100]">
           <a href="javascript:void(0)" className="outline-none">
-            <img src="/logo.png" alt="logo" className="w-[170px]" />
+            <Image src="/logo.png" alt="logo" width={150} height={150}/>
           </a>
         </div>
 
