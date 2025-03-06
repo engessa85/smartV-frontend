@@ -14,7 +14,7 @@ function CompaniesLayout({ search }: { search: string }) {
       setLoading(true);
 
       try {
-        const res = await getCompanies(accessToken);
+        const res = await getCompanies(accessToken ?? "");
         if (res) {
           console.log(res);
 
