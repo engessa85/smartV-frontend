@@ -18,7 +18,7 @@ function Page() {
       if (!token) {
         route.push("/");
       }
-    }, []);
+    }, [route]);
 
   return (
     <div className="relative bg-[#f7f6f9] h-full min-h-screen font-[sans-serif]">
