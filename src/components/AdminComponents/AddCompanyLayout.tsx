@@ -74,7 +74,7 @@ function AddCompanyLayout({ setIsActive }: { setIsActive: React.Dispatch<React.S
     const accessToken = localStorage.getItem("accessToken");
 
     try {
-      const res = await AddCompany(formData, accessToken);
+      const res = await AddCompany(formData, accessToken ?? "");
       if (res) {
         toast.success("Company is added ...", {autoClose:2000});
         setTimeout(() => setIsActive("companies"), 2000);
