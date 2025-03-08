@@ -6,6 +6,7 @@ import Header from "@/components/EmployeeComponents/Header";
 import CompaniesLayout from "@/components/EmployeeComponents/CompaniesLayout";
 import HomeLayout from "@/components/EmployeeComponents/HomeLayout";
 import AddCompanyLayout from "@/components/EmployeeComponents/AddCompanyLayout";
+import UserCompaniesLayout from "@/components/EmployeeComponents/UserCompaniesLayout";
 
 function Page() {
   const [isActive, setIsActive] = useState<string>("home")
@@ -29,7 +30,9 @@ function Page() {
           <Header isActive={isActive} setSearch = {setSearch} />
           {isActive === "home" && <HomeLayout />}
           {isActive === "companies" && <CompaniesLayout search={search} />}
+          {isActive === "user-companies" && <UserCompaniesLayout search={search} />}
           {isActive === "add-company" && <AddCompanyLayout setIsActive={setIsActive} />}
+          
         </section>
       </div>
     </div>

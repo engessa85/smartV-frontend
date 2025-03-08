@@ -77,7 +77,7 @@ function AddCompanyLayout({ setIsActive }: { setIsActive: React.Dispatch<React.S
       const res = await AddCompany(formData, accessToken ?? "");
       if (res) {
         toast.success("Company is added ...", {autoClose:2000});
-        setTimeout(() => setIsActive("companies"), 2000);
+        setTimeout(() => setIsActive("user-companies"), 2000);
       } else {
         toast.error("Company is not added ...");
       }

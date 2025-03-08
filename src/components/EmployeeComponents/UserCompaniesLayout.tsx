@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from "react";
-import CompanyCard from "./CompanyCard";
-import { getCompanies } from "@/services/CompanyServices";
+import UserCompanyCard from "./UserCompanyCard";
+import { getUserCompaniesAppointment } from "@/services/CompanyServices";
 import { BeatLoader } from "react-spinners";
-import { CompanyFormData } from "@/services/CompanyServices";
+import { CompanyAppointment } from "@/services/CompanyServices";
 import { ToastContainer, toast } from "react-toastify";
 
-function CompaniesLayout({ search }: { search: string }) {
+function UserCompaniesLayout({ search }: { search: string }) {
   const [loading, setLoading] = useState<boolean>(false);
-  const [formData, setFomData] = useState<CompanyFormData[]>([]);
+  const [formData, setFomData] = useState<CompanyAppointment[]>([]);
+
+  const [refreshKey, setRefreshKey] = useState(0);
+
+const handleRefresh = () => {
+  setRefreshKey((prevKey) => prevKey + 1); // Triggers a re-render
+};
+
 
 
   useEffect(() => {
     const fetchingData = async () => {
-      if(!search){
-        setFomData([])
-        return
-      }
       const accessToken = localStorage.getItem("accessToken");
       setLoading(true);
 
       try {
-        const res = await getCompanies(accessToken ?? "");
+        const res = await getUserCompaniesAppointment(accessToken ?? "");
         if (res) {
+    
           setFomData(res);
         } else {
           toast.error("Error in fetching the companies !!!", {
@@ -38,10 +42,11 @@ function CompaniesLayout({ search }: { search: string }) {
     };
 
     fetchingData();
-  }, [search]);
+  }, [refreshKey]);
 
+ 
   const filteredData = formData.filter((company) =>
-    company.company_name.toLowerCase().includes(search.toLocaleLowerCase())
+    company.company.company_name.toLowerCase().includes(search.toLocaleLowerCase())
   );
   
 
@@ -60,7 +65,7 @@ function CompaniesLayout({ search }: { search: string }) {
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
           {filteredData.length > 0 ? (
             filteredData.map((company, index) => (
-              <CompanyCard key={index} companyData={company} />
+              <UserCompanyCard key={index} companyData={company} refresh = {handleRefresh} />
             ))
           ) : (
             <p className="text-center col-span-3 text-gray-500">
@@ -71,8 +76,9 @@ function CompaniesLayout({ search }: { search: string }) {
           <div></div>
         </div>
       )}
+
     </div>
   );
 }
 
-export default CompaniesLayout;
+export default UserCompaniesLayout;

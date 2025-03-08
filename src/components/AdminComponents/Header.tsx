@@ -42,7 +42,7 @@ function Header({ isActive, setSearch }: PropeType) {
       <div className="flex flex-wrap items-center w-full relative tracking-wide">
         <div className="flex items-center gap-y-6 max-sm:flex-col z-50 w-full pb-2">
           {isActive === "companies" && (
-            <div className="flex items-center gap-4 w-full px-6 bg-white shadow-sm min-h-[48px] sm:mr-20 rounded-md outline-none border-none">
+            <div className="flex items-center gap-4 w-[80%] px-6 bg-white shadow-sm min-h-[48px] sm:mr-20 rounded-md outline-none border-none">
               <input
                 type="text"
                 placeholder="Search for company......."

@@ -36,6 +36,23 @@ export interface CompanyFormData {
 }
 
 
+export interface company {
+  id:number
+  company_name: string;
+  company_website: string;
+  company_email: string;
+
+}
+export interface CompanyAppointment {
+  id:number
+  user:string
+  company:company
+  date:string
+  follow:boolean
+  note?:string
+}
+
+
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const AddCompany = async (companyData: CompanyFormData, token: string) => {
@@ -82,6 +99,89 @@ export const getCompanies = async (token: string) => {
     return response.data;
   } catch (error) {
     console.log("Error", error);
-    throw new Error("Error during adding the company");
+    throw new Error("Error during getting the company");
   }
 };
+
+
+
+export const getUserCompanies = async (token: string) => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/company/user-companies`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Include JWT token for authentication
+        },
+      }
+    );
+
+    if (!response.status) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.data;
+  } catch (error) {
+    console.log("Error", error);
+    throw new Error("Error during getting the company");
+  }
+};
+
+
+
+export const getUserCompaniesAppointment = async (token: string) => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/company/user-appointment`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Include JWT token for authentication
+        },
+      }
+    );
+
+    if (!response.status) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.data;
+  } catch (error) {
+    console.log("Error", error);
+    throw new Error("Error during getting the company");
+  }
+};
+
+
+
+export const addUserCompaniesAppointment = async (
+  token: string,
+  id: number,
+  date: string,
+  note?: string,
+  follow?: boolean
+) => {
+  try {
+    const response = await axios.put(
+      `${baseUrl}/company/user-appointment/${id}`,
+      {
+        date,
+        note: note?.trim() || "", // Optional note, ensure no unnecessary spaces
+        follow: follow ?? false, // Default to false if undefined
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error booking the appointment:", error);
+    throw new Error("Error during booking the appointment");
+  }
+};
+
