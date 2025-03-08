@@ -11,7 +11,7 @@ interface CompanyCardProps {
 }
 
 function UserCompanyCard({ companyData, refresh }: CompanyCardProps) {
-  const [openModal, setOpenModal] = useState<Boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   return (
     <div className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] p-6 w-full max-w-sm rounded-lg overflow-hidden relative">
