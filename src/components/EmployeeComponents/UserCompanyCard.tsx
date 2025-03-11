@@ -13,6 +13,7 @@ interface CompanyCardProps {
 function UserCompanyCard({ companyData, refresh }: CompanyCardProps) {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
+
   return (
     <div className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] p-6 w-full max-w-sm rounded-lg overflow-hidden relative">
       {companyData.follow ? (
@@ -51,7 +52,7 @@ function UserCompanyCard({ companyData, refresh }: CompanyCardProps) {
       <div className="flex items-center">
         <p className="text-sm text-gray-800">
           Managed by:{" "}
-          <span className="font-bold underline">{companyData.user}</span>
+          <span className="font-bold underline">{companyData.user} {companyData.user_first_name && `(${companyData.user_first_name})`}</span>
         </p>
       </div>
       {companyData.follow ? (

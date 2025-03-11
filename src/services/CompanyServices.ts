@@ -4,6 +4,7 @@ import axios from "axios";
 
 export interface CompanyFormData {
   user?:string
+  user_first_name?:string
 
   company_name: string;
   company_website: string;
@@ -46,6 +47,7 @@ export interface company {
 export interface CompanyAppointment {
   id:number
   user:string
+  user_first_name:string
   company:company
   date:string
   follow:boolean

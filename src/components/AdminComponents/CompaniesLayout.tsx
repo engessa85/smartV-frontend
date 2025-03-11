@@ -16,8 +16,6 @@ function CompaniesLayout({ search }: { search: string }) {
       try {
         const res = await getCompanies(accessToken ?? "");
         if (res) {
-          console.log(res);
-
           setFomData(res);
         } else {
           toast.error("Error in fetching the companies !!!", {

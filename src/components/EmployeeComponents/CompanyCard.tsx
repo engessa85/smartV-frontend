@@ -37,7 +37,7 @@ function CompanyCard({ companyData }: CompanyCardProps) {
 
       <div className="flex items-center">
         <p className="text-sm text-gray-800">
-          Managed by: <span className="font-bold underline">{companyData.user}</span>
+          Managed by: <span className="font-bold underline">{companyData.user} {companyData.user_first_name && `(${companyData.user_first_name})`}</span>
         </p>
       </div>
     </div>
