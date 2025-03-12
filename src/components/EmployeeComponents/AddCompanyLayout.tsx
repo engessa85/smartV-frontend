@@ -384,6 +384,8 @@ function AddCompanyLayout({ setIsActive }: { setIsActive: React.Dispatch<React.S
           </button>
         </div>
       </form>
+
+      
       {loading && (
         <BeatLoader
           className="text-center"

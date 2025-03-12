@@ -3,6 +3,7 @@ import axios from "axios";
 
 
 export interface CompanyFormData {
+  id?:number
   user?:string
   user_first_name?:string
 
@@ -111,6 +112,35 @@ export const getUserCompanies = async (token: string) => {
   try {
     const response = await axios.get(
       `${baseUrl}/company/user-companies`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Include JWT token for authentication
+        },
+      }
+    );
+
+    if (!response.status) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.data;
+  } catch (error) {
+    console.log("Error", error);
+    throw new Error("Error during getting the company");
+  }
+};
+
+
+
+export const updateUserCompanies = async (token: string,id:number, updatedCompanyData:CompanyFormData) => {
+  
+
+  
+  
+  try {
+    const response = await axios.put(
+      `${baseUrl}/company/user-companies/${id}`,updatedCompanyData,
       {
         headers: {
           "Content-Type": "application/json",

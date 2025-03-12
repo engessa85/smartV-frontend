@@ -6,8 +6,7 @@ import { FaNetworkWired } from "react-icons/fa6";
 import { IoGitNetwork } from "react-icons/io5";
 import Image from "next/image";
 import { FaUserCog } from "react-icons/fa";
-
-
+import { TbDatabaseSearch } from "react-icons/tb";
 
 
 
@@ -33,9 +32,11 @@ function SideBar(props:PropeType) {
         <div className="py-6 px-6">
           <ul className="space-y-2">
             <SideBarItem onClick={()=>props.setIsActive("home")} title="Home" isActive = {props.isActive === 'home'} icon={<FaHome size={20} />} />
-            <SideBarItem onClick={()=>props.setIsActive("companies")} title="Companies" isActive = {props.isActive === 'companies'} icon={<FaNetworkWired size={20} />} />
-            <SideBarItem onClick={()=>props.setIsActive("user-companies")} title="User Companies" isActive = {props.isActive === 'user-companies'} icon={<FaUserCog size={20} />} />
-            <SideBarItem onClick={()=>props.setIsActive("add-company")} title="Add Company" isActive = {props.isActive === 'add-company'} icon={<IoGitNetwork size={20} />} />
+            <SideBarItem onClick={()=>props.setIsActive("search-companies")} title="Search Companies" isActive = {props.isActive === 'search-companies'} icon={<TbDatabaseSearch size={20} />} />
+            <SideBarItem onClick={()=>props.setIsActive("follow-companies")} title="Follow Companies" isActive = {props.isActive === 'follow-companies'} icon={<FaNetworkWired size={20} />} />
+            <SideBarItem onClick={()=>props.setIsActive("modify-company")} title="Modify Companies" isActive = {props.isActive === 'modify-company'} icon={<FaUserCog size={20} />} />
+            <SideBarItem onClick={()=>props.setIsActive("add-company")} title="Add Companies" isActive = {props.isActive === 'add-company'} icon={<IoGitNetwork size={20} />} />
+           
             
           </ul>
         </div>
