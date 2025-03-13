@@ -20,6 +20,8 @@ function DashBoardLayout() {
       const accessToke = localStorage.getItem("accessToken");
       try {
         const res = await getUserUserDashBoard(accessToke ?? "");
+        console.log(res);
+
         if (res) {
           setDashBoardInfo(res);
         } else {
@@ -56,7 +58,7 @@ function DashBoardLayout() {
             <h1>Total Companies</h1>
           </div>
           <hr className="my-3"></hr>
-          <p className="font-bold">{dashBoardInfo?.company_count}</p>
+          <p className="font-bold">{dashBoardInfo?.company_count ?? "Loading..."}</p>
         </div>
 
         <div className="bg-white p-5 rounded-xl w-[50%]">
@@ -65,7 +67,7 @@ function DashBoardLayout() {
             <h1>Total Companies Followed</h1>
           </div>
           <hr className="my-3"></hr>
-          <p className="font-bold">{dashBoardInfo?.company_followed}</p>
+          <p className="font-bold">{dashBoardInfo?.company_followed ?? "Loading..."}</p>
         </div>
 
         <div className="bg-white p-5 rounded-xl w-[50%]">
@@ -75,16 +77,20 @@ function DashBoardLayout() {
           </div>
 
           <hr className="my-3"></hr>
-          <p className="font-bold">{dashBoardInfo?.company_not_followed}</p>
+          <p className="font-bold">{dashBoardInfo?.company_not_followed ?? "Loading..."}</p>
         </div>
       </div>
       <div className="flex gap-4 items-center justify-center">
         <div className="bg-white p-5 rounded-xl mt-5 flex-1">
           <h2 className="text-lg font-semibold mb-4">Company Follow Status</h2>
           <hr className="my-4"></hr>
-          <PieChartComponent totalCompanies={dashBoardInfo!.company_count} followedCompanies={dashBoardInfo!.company_followed} />
+          {dashBoardInfo && (
+            <PieChartComponent
+              totalCompanies={dashBoardInfo.company_count}
+              followedCompanies={dashBoardInfo.company_followed}
+            />
+          )}
         </div>
-        
       </div>
     </div>
   );
