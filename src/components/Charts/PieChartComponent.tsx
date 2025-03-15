@@ -13,7 +13,7 @@ export default function PieChartComponent({ totalCompanies, followedCompanies }:
 
   return (
     <div className="flex flex-col items-center">
-      <ResponsiveContainer width={400} height={400}>
+      <ResponsiveContainer width={500} height={500}>
         <PieChart>
           <Pie
             data={data}
@@ -23,9 +23,20 @@ export default function PieChartComponent({ totalCompanies, followedCompanies }:
             cy="50%"
             outerRadius={120}
             fill="#8884d8"
-            label={({ name, percent }) =>
-              `${name}: ${(percent * 100).toFixed(1)}%`
-            }
+            label={({ name, percent, x, y, index}) => (
+              <text
+                x={x}
+                y={y}
+                textAnchor="middle"
+                dominantBaseline="central"
+                fontSize={14}
+                fontFamily="Arial, sans-serif"
+                fontWeight="bold"
+                fill="#FFFFF"
+              >
+                {`${name}: ${(percent * 100).toFixed(1)}%`}
+              </text>
+            )}
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index]} />
