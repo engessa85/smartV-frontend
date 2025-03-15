@@ -23,7 +23,7 @@ export default function PieChartComponent({ totalCompanies, followedCompanies }:
             cy="50%"
             outerRadius={120}
             fill="#8884d8"
-            label={({ name, percent, x, y, index}) => (
+            label={({ name, percent, x, y}) => (
               <text
                 x={x}
                 y={y}
