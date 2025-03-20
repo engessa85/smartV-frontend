@@ -70,7 +70,7 @@ function FollowStatus() {
         <>
           {todayAppointments.length > 0 && (
             <h2 className="text-xl font-bold text-gray-800 mb-4 bg-yellow-200 px-3 py-1 rounded-lg w-fit">
-              Today's Follow-ups
+              Todays Follow-ups
             </h2>
           )}
 
