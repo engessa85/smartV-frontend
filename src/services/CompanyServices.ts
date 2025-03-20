@@ -1,30 +1,27 @@
 import axios from "axios";
 
-
-
 export interface CompanyFormData {
-  id?:number
-  user?:string
-  user_first_name?:string
+  id?: number;
+  user?: string;
+  user_first_name?: string;
 
   company_name: string;
   company_website: string;
   company_email: string;
-  company_linkedin:string;
-  company_facebook:string;
-  company_twitter:string
+  company_linkedin: string;
+  company_facebook: string;
+  company_twitter: string;
 
-
-  person_name:string;
-  person_linked:string;
-  person_email:string;
+  person_name: string;
+  person_linked: string;
+  person_email: string;
   person_contact: string;
 
-  negotiate:boolean;
-  contract:boolean;
+  negotiate: boolean;
+  contract: boolean;
   first_payment: boolean;
   final_payment: boolean;
-  
+
   kuwait: boolean;
   uae: boolean;
   qatar: boolean;
@@ -33,32 +30,49 @@ export interface CompanyFormData {
   bahrain: boolean;
   south_africa: boolean;
   egypt: boolean;
-  created_at?:string
-  updated_at?:string
+  created_at?: string;
+  updated_at?: string;
 }
 
-
 export interface company {
-  id:number
+  id: number;
   company_name: string;
   company_website: string;
   company_email: string;
-
 }
 export interface CompanyAppointment {
-  id:number
-  user:string
-  user_first_name:string
-  company:company
-  date:string
-  follow:boolean
-  note?:string
+  id: number;
+  user: string;
+  user_first_name: string;
+  company: company;
+  date: string;
+  follow: boolean;
+  note?: string;
 }
+
+
+export interface AllCompanyAppointmentInterFace {
+  id: number;
+  user: string;
+  user_first_name: string;
+  company: company;
+  date: string | null;
+  follow: boolean;
+  note: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+
+
 
 
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-export const AddCompany = async (companyData: CompanyFormData, token: string) => {
+export const AddCompany = async (
+  companyData: CompanyFormData,
+  token: string
+) => {
   try {
     const response = await axios.post(
       `${baseUrl}/company/companies/`,
@@ -82,18 +96,14 @@ export const AddCompany = async (companyData: CompanyFormData, token: string) =>
   }
 };
 
-
 export const getCompanies = async (token: string) => {
   try {
-    const response = await axios.get(
-      `${baseUrl}/company/companies/`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Include JWT token for authentication
-        },
-      }
-    );
+    const response = await axios.get(`${baseUrl}/company/companies/`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // Include JWT token for authentication
+      },
+    });
 
     if (!response.status) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -105,20 +115,15 @@ export const getCompanies = async (token: string) => {
     throw new Error("Error during getting the company");
   }
 };
-
-
 
 export const getUserCompanies = async (token: string) => {
   try {
-    const response = await axios.get(
-      `${baseUrl}/company/user-companies`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Include JWT token for authentication
-        },
-      }
-    );
+    const response = await axios.get(`${baseUrl}/company/user-companies`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // Include JWT token for authentication
+      },
+    });
 
     if (!response.status) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -131,16 +136,15 @@ export const getUserCompanies = async (token: string) => {
   }
 };
 
-
-
-export const updateUserCompanies = async (token: string,id:number, updatedCompanyData:CompanyFormData) => {
-  
-
-  
-  
+export const updateUserCompanies = async (
+  token: string,
+  id: number,
+  updatedCompanyData: CompanyFormData
+) => {
   try {
     const response = await axios.put(
-      `${baseUrl}/company/user-companies/${id}`,updatedCompanyData,
+      `${baseUrl}/company/user-companies/${id}`,
+      updatedCompanyData,
       {
         headers: {
           "Content-Type": "application/json",
@@ -159,20 +163,15 @@ export const updateUserCompanies = async (token: string,id:number, updatedCompan
     throw new Error("Error during getting the company");
   }
 };
-
-
 
 export const getUserCompaniesAppointment = async (token: string) => {
   try {
-    const response = await axios.get(
-      `${baseUrl}/company/user-appointment`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Include JWT token for authentication
-        },
-      }
-    );
+    const response = await axios.get(`${baseUrl}/company/user-appointment`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // Include JWT token for authentication
+      },
+    });
 
     if (!response.status) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -184,8 +183,6 @@ export const getUserCompaniesAppointment = async (token: string) => {
     throw new Error("Error during getting the company");
   }
 };
-
-
 
 export const addUserCompaniesAppointment = async (
   token: string,
@@ -217,3 +214,24 @@ export const addUserCompaniesAppointment = async (
   }
 };
 
+export const allAppointment = async (token: string) => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/company/user-appointment-all`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.status) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.data;
+  } catch (error) {
+    console.error("Error Getting all user appointment:", error);
+    throw new Error("Error during getting all user appointment");
+  }
+};

@@ -4,7 +4,10 @@ import SideBarItem from "./SideBarItem";
 import { FaHome } from "react-icons/fa";
 import { FaNetworkWired } from "react-icons/fa6";
 import { IoGitNetwork } from "react-icons/io5";
+import { MdFollowTheSigns } from "react-icons/md";
 import Image from "next/image";
+
+
 
 
 interface PropeType {
@@ -29,6 +32,7 @@ function SideBar(props:PropeType) {
         <div className="py-6 px-6">
           <ul className="space-y-2">
             <SideBarItem onClick={()=>props.setIsActive("home")} title="Home" isActive = {props.isActive === 'home'} icon={<FaHome size={20} />} />
+            <SideBarItem onClick={()=>props.setIsActive("follow-status")} title="Follow Status" isActive = {props.isActive === 'follow-status'} icon={<MdFollowTheSigns size={20} />} />
             <SideBarItem onClick={()=>props.setIsActive("companies")} title="Companies" isActive = {props.isActive === 'companies'} icon={<FaNetworkWired size={20} />} />
             <SideBarItem onClick={()=>props.setIsActive("add-company")} title="Add Company" isActive = {props.isActive === 'add-company'} icon={<IoGitNetwork size={20} />} />
           </ul>
